@@ -11,10 +11,10 @@ def home():
 @app.route('/users')
 def get_users():
     conn = psycopg2.connect(
-        host=aws-0-ap-southeast-1.pooler.supabase.com,
-        dbname=postgres,
-        user=postgres.slgsuvchudfsllbhuhid,
-        password=6wZsZYQpiRNanS_,
+        host="aws-0-ap-southeast-1.pooler.supabase.com",
+        dbname="postgres",
+        user="postgres.slgsuvchudfsllbhuhid",
+        password="6wZsZYQpiRNanS_",
         port=5432
     )
     cur = conn.cursor()
