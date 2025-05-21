@@ -18,7 +18,7 @@ def get_users():
         port=5432
     )
     cur = conn.cursor()
-    cur.execute("SELECT * FROM users;")
+    cur.execute("SELECT * FROM restaurant_logins;")
     rows = cur.fetchall()
     cur.close()
     conn.close()
