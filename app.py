@@ -23,3 +23,20 @@ def get_users():
     cur.close()
     conn.close()
     return jsonify(rows)
+
+
+@app.route('/res_details')
+def res_details():
+    conn = psycopg2.connect(
+        host="aws-0-ap-southeast-1.pooler.supabase.com",
+        dbname="postgres",
+        user="postgres.slgsuvchudfsllbhuhid",
+        password="6wZsZYQpiRNanS_",
+        port=5432
+    )
+    cur = conn.cursor()
+    cur.execute("SELECT * FROM restaurant_dishes WHERE restaurant_id = 1111;")
+    rows = cur.fetchall()
+    cur.close()
+    conn.close()
+    return jsonify(rows)
