@@ -1,6 +1,7 @@
 from flask import Flask, jsonify
 import psycopg2
 import os
+import json
 
 app = Flask(__name__)
 
@@ -37,6 +38,15 @@ def res_details():
     cur = conn.cursor()
     cur.execute("SELECT price,description,category,dish_name FROM restaurant_menu_items WHERE res_id = 1111;")
     rows = cur.fetchall()
+    # Get column names
+    columns = [desc[0] for desc in cur.description]
+    
+    # Convert to list of dicts
+    result = [dict(zip(columns, row)) for row in rows]
+    
+    # Convert to JSON string (optional, if you want to print or return)
+    json_data = json.dumps(result, indent=2)
+
     cur.close()
     conn.close()
-    return jsonify(rows)
+    return json_data
