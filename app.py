@@ -45,7 +45,7 @@ def res_details():
     result = [dict(zip(columns, row)) for row in rows]
     
     # Convert to JSON string (optional, if you want to print or return)
-    json_data = json.dumps(result, indent=2)
+    json_data = json.dumps(result, indent=2, default=str)
 
     cur.close()
     conn.close()
