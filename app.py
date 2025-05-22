@@ -35,7 +35,7 @@ def res_details():
         port=5432
     )
     cur = conn.cursor()
-    cur.execute("SELECT * FROM restaurant_dishes WHERE restaurant_id = 1111;")
+    cur.execute("SELECT price,description,category,dish_name FROM restaurant_menu_items WHERE res_id = 1111;")
     rows = cur.fetchall()
     cur.close()
     conn.close()
