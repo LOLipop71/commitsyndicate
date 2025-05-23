@@ -2,7 +2,6 @@ from flask import Flask, jsonify,request
 import psycopg2
 import os
 import json
-import logging 
 
 app = Flask(__name__)
 
@@ -35,8 +34,8 @@ def get_users():
 
 @app.route('/res_details')
 def res_details():
-    res_idd = request.args.get('id')
-    app.logger.info(f"got res_id {res_idd}")
+    # res_idd = request.args.get('id')
+    # app.logger.info(f"got res_id {res_idd}")
     conn = psycopg2.connect(
         host="aws-0-ap-southeast-1.pooler.supabase.com",
         dbname="postgres",
@@ -45,7 +44,7 @@ def res_details():
         port=5432
     )
     cur = conn.cursor()
-    cur.execute(f"SELECT price,description,category,dish_name FROM restaurant_menu_items WHERE res_id = {res_idd};")
+    cur.execute("SELECT price,description,category,dish_name FROM restaurant_menu_items WHERE res_id = 1111;")
     rows = cur.fetchall()
     # Get column names
     columns = [desc[0] for desc in cur.description]
