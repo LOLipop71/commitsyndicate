@@ -53,18 +53,18 @@ def res_details():
     # Convert to list of dicts
     result = [dict(zip(columns, row)) for row in rows]
 
-    look_up_dict = {"1111":"Ishiro Fusion Bowl Images",
-                    "1112":"Arnold's Fried Chicken",
-                    "1113":"Bar Bar Black Sheep",
-                    "1114":"Encik Tan",
-                    "1115":"Yardbird Southern Table and Bar"}
-    new_result = []
-    for i in result:
-        i["restaurant_name"] = look_up_dict[str(res_idd)]
-        new_result.append(i)
+    # look_up_dict = {"1111":"Ishiro Fusion Bowl Images",
+    #                 "1112":"Arnold's Fried Chicken",
+    #                 "1113":"Bar Bar Black Sheep",
+    #                 "1114":"Encik Tan",
+    #                 "1115":"Yardbird Southern Table and Bar"}
+    # new_result = []
+    # for i in result:
+    #     i["restaurant_name"] = look_up_dict[str(res_idd)]
+    #     new_result.append(i)
     
     # Convert to JSON string (optional, if you want to print or return)
-    json_data = json.dumps(new_result, indent=2, default=str)
+    json_data = json.dumps(result, indent=2, default=str)
 
     cur.close()
     conn.close()
