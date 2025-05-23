@@ -2,8 +2,15 @@ from flask import Flask, jsonify,request
 import psycopg2
 import os
 import json
+import logging 
 
 app = Flask(__name__)
+
+
+gunicorn_logger = logging.getLogger('gunicorn.error')
+app.logger.handlers = gunicorn_logger.handlers
+app.logger.setLevel(gunicorn_logger.level)
+
 
 @app.route('/')
 def home():
@@ -29,6 +36,7 @@ def get_users():
 @app.route('/res_details')
 def res_details():
     res_idd = request.args.get('id')
+    app.logger.info(f"got res_id {res_idd}")
     conn = psycopg2.connect(
         host="aws-0-ap-southeast-1.pooler.supabase.com",
         dbname="postgres",
