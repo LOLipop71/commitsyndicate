@@ -1,4 +1,4 @@
-from flask import Flask, jsonify,request
+from flask import Flask, jsonify
 import psycopg2
 import os
 import json
@@ -34,8 +34,6 @@ def get_users():
 
 @app.route('/res_details')
 def res_details():
-    # res_idd = request.args.get('id')
-    # app.logger.info(f"got res_id {res_idd}")
     conn = psycopg2.connect(
         host="aws-0-ap-southeast-1.pooler.supabase.com",
         dbname="postgres",
@@ -51,16 +49,6 @@ def res_details():
     
     # Convert to list of dicts
     result = [dict(zip(columns, row)) for row in rows]
-
-    # look_up_dict = {"1111":"Ishiro Fusion Bowl Images",
-    #                 "1112":"Arnold's Fried Chicken",
-    #                 "1113":"Bar Bar Black Sheep",
-    #                 "1114":"Encik Tan",
-    #                 "1115":"Yardbird Southern Table and Bar"}
-    # new_result = []
-    # for i in result:
-    #     i["restaurant_name"] = look_up_dict[str(res_idd)]
-    #     new_result.append(i)
     
     # Convert to JSON string (optional, if you want to print or return)
     json_data = json.dumps(result, indent=2, default=str)
